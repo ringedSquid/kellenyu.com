@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="/static/basestyle.css">
+</head>
+
+<body>
+  <div id="root">
+    <div id="navbar">
+      <span class="navbar_span">
+        <a class="navbar_link" , href="/index">/</a>
+      </span>
+
+      <span class="navbar_span"> | </span>
+
+      <span class="navbar_span">
+        <a class="navbar_link" , href="{{baselink}}">CD: {{baselink}}</a>
+      </span>
+
+      % for link in links:
+
+      <span class="navbar_span"> | </span>
+
+      <span class="navbar_span">
+        <a class="navbar_link" , href="{{baselink}}/{{link}}">./{{link}}</a>
+      </span>
+
+      %end
+
+    </div>
+    <div id="page">
+      <div id="header">
+      </div>
+      <div id="leftbox">
+        {{!content["left"]}}
+      </div>
+      <div id="rightbox">
+        {{!content["right"]}}
+      </div>
+    </div>
+    <section id="footer">
+    </section>
+  </div>
+
+</html>
