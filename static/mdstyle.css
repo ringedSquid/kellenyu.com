@@ -1,0 +1,21 @@
+.codehilite {
+  padding: 10px;
+  color: #3B3B3B;
+  overflow-x: auto;
+  scrollbar-color: #faf9ec #3b3b3b;
+}
+
+pre {
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #3B3B3B;
+}
+
+a:hover {
+  color: #B0E0E6;
+}
+
+

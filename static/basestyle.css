@@ -43,12 +43,14 @@ body {
   padding: 8px;
   float: left;
   width: 60%;
+  font-size: 0.9rem;
 }
 
 #rightbox {
   padding: 8px;
   float: right;
   width: 40%;
+  font-size: 0.75rem;
 }
 
 #page {

@@ -1,11 +1,17 @@
 import os
 from typing import Dict, List
 
-import markdown
+import markdown2
 
 #Returns the 2 .md files in each page dir
 def get_content(dir: str) -> Dict:
-    #Chck if paths exist
+    #Markdown extensions
+    extras = {
+        "html-classes" : None,
+        "fenced-code-blocks": None,
+        "break-on-newline" : None,
+    }
+    #Check if paths exist
     if ((os.path.exists(f"{dir}/leftside.md") and os.path.exists(f"{dir}/rightside.md")) == False):
         return {
             "left": "<span>Content not found!</span>", 
@@ -17,11 +23,11 @@ def get_content(dir: str) -> Dict:
     content = {} 
 
     with open(f"{dir}/leftside.md", 'r') as file:
-        content["left"] = markdown.markdown(file.read())
+        content["left"] = markdown2.markdown(file.read(), extras=extras)
         file.close()
 
     with open(f"{dir}/rightside.md", 'r') as file:
-        content["right"] = markdown.markdown(file.read())
+        content["right"] = markdown2.markdown(file.read(), extras=extras)
         file.close()
 
     return content 
