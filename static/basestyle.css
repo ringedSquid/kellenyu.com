@@ -5,13 +5,13 @@
 }
 
 body {
-  background-color: #FAF9EC;
+  background-color: #F9E4BC;
   margin: 0px;
 }
 
 #root {
   margin: auto;
-  max-width: 1080px;
+  max-width: 100%;
   min-height: 100vh;
 }
 
@@ -32,7 +32,7 @@ body {
 .navbar_link {
   font-size: 1.5rem;
   text-decoration: none;
-  color: #FAF9EC;
+  color: #F9E4BC;
 }
 
 .navbar_link:hover {
