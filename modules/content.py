@@ -52,7 +52,8 @@ def deep_ls(dir: str, dirlist: list) -> List:
 
     for d in os.listdir(dir):
         if (os.path.isdir(f"{dir}/{d}") and (d != "media")):
-            dirlist.append(d)
+            print(d)
+            dirlist.append(f"{dir}/{d}")
             deep_ls(f"{dir}/{d}", dirlist)
 
     return dirlist
@@ -60,9 +61,14 @@ def deep_ls(dir: str, dirlist: list) -> List:
 
 def get_deep_ls(dir: str) -> List:
     if (os.path.exists(dir) == False):
+        print(dir)
         return []
 
     return deep_ls(dir, [dir])
+
+
+
+
 
 
 
