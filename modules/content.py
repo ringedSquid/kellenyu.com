@@ -44,3 +44,27 @@ def get_dirs(dir: str) -> List:
 
     return dirs
 
+
+#Recursive method to explore all directories
+def deep_ls(dir: str, dirlist: list) -> List:
+    if (os.path.exists(dir) == False):
+        return dirlist
+
+    for d in os.listdir(dir):
+        if (os.path.isdir(f"{dir}/{d}") and (d != "media")):
+            dirlist.append(d)
+            deep_ls(f"{dir}/{d}", dirlist)
+
+    return dirlist
+
+
+def get_deep_ls(dir: str) -> List:
+    if (os.path.exists(dir) == False):
+        return []
+
+    return deep_ls(dir, [dir])
+
+
+
+
+
