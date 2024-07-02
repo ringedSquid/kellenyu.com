@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="/static/basestyle.css">
+  <link type="text/css" rel="stylesheet" href="/static/mdstyle.css">
+  <link type="text/css" rel="stylesheet" href="/static/codestyle.css">
+</head>
+
+<body>
+  <div id="root">
+    <div id="navbar">
+      <span class="navbar_span">
+        <a class="navbar_link" , href="/home">/home</a>
+      </span>
+
+      <span class="navbar_span"> | </span>
+
+      <span class="navbar_span">
+        <a class="navbar_link" , href="{{baselink}}">CD: {{baselink}}</a>
+      </span>
+
+      % for link in links:
+
+      <span class="navbar_span"> | </span>
+
+      <span class="navbar_span">
+        <a class="navbar_link" , href="{{baselink}}/{{link}}">./{{link}}</a>
+      </span>
+
+      %end
+
+    </div>
+    <div id="page">
+      <div id="header">
+      </div>
+      <div id="leftbox">
+        {{!content["left"]}}
+      </div>
+      <div id="rightbox">
+        <a class="home_tree_link" , href="{{baselink}}">{{baselink}}</a>
+        <br>
+
+        % for link in tree:
+
+        <a class="home_tree_link", href="{{link}}">{{link}}</a>
+        <br>
+
+        %end
+
+      </div>
+    </div>
+    <section id="footer">
+
+    </section>
+  </div>
+</body>
+</html>

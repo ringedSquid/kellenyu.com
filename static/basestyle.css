@@ -9,6 +9,11 @@ body {
   margin: 0px;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
 ::-webkit-scrollbar {
   width: 8px;               /* width of the entire scrollbar */
   height: 8px;
@@ -64,6 +69,15 @@ body {
   color: #B0E0E6;
 }
 
+.home_tree_link {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #3B3B3B;
+}
+
+.home_tree_link:hover {
+  color: #B0E0E6;
+}
 #leftbox {
   padding: 8px;
   float: left;
