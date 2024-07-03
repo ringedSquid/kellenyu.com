@@ -1,5 +1,6 @@
 from bottle import route, run, template, static_file
 import modules.content as content
+import os
 
 @route("/<path:path>" )
 def return_page(path):
@@ -24,5 +25,8 @@ def return_page(path):
 
     return template("basic_page", baselink=f"/{path}", links=navbar_links, content=page_content)
 
-
-run(debug=True, reloader=True, port=8000)
+if __name__ == "__main__":
+    if os.environ.get('APP_LOCATION') == 'heroku':
+        run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    else:
+        run(host='localhost', port=8080, debug=True)
