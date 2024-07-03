@@ -24,5 +24,9 @@ def return_page(path):
 
     return template("basic_page", baselink=f"/{path}", links=navbar_links, content=page_content)
 
+if __name__ == "__main__":
+    print("Starting server...")
+    #only for debugging
+    #run(debug=True, reloader=True, port=8000)
+    run(
 
-run(debug=True, reloader=True, port=8000)
