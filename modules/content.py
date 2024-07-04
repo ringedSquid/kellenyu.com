@@ -30,6 +30,8 @@ def get_content(dir: str) -> Dict:
         content["right"] = markdown2.markdown(file.read(), extras=extras)
         file.close()
 
+    print(content)
+
     return content 
 
 #Return all directories within a directory 
