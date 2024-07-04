@@ -1,9 +1,22 @@
-# Welcome to my website!
-## Welcome to my website!
-### Welcome to my website!
-#### Welcome to my website!
-##### Welcome to my website!
-###### Welcome to my website!
-huzzah!
+# Hi! I'm Kellen Yu
+this is my website.
+<br>
+### Important links here:
+- [github](https://github.com/ringedSquid)
+<br>
 
-![alt text](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F88d26018-fa1a-4b92-a8b9-d8ed3f9e178e_3840x2160.png)
+## Who am I?
+I'm a rising senior at Stuyvesant High School with a passion for embedded systems, robotics, and physics.
+<br>
+## What is on this website?
+On my site you can take a look at things I have worked on. 
+<br>
+## How do I use this website?
+This website is structured like a file system.
+You can move to different directories via the navbar.
+Some pages have a tree of directories on their right side.
+<br>
+## Can I get the code for this website?
+Feel free to check out the github repo [here](https://github.com/ringedSquid/kellenyu.com)
+
+

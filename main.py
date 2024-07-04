@@ -1,10 +1,13 @@
-from bottle import route, run, template, static_file
+from bottle import route, run, template, static_file, redirect
 import modules.content as content
 import os
 
+@route("/")
+def root_page():
+    redirect("/home")
+
 @route("/<path:path>" )
 def return_page(path):
-
     #Check if it is a static file
     dirs = path.split("/")
     if (dirs[0] == "static"):

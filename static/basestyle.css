@@ -2,7 +2,7 @@
 
 * {
   font-family: "JetBrains Mono", monospace; 
-  margin: 0px 0px 0px 0px;
+  margin: 0px 0px 0.1em 0px;
 }
 
 body {
@@ -15,18 +15,22 @@ img {
   display: block;
 }
 
+hr {
+  border: 1px solid #3B3B3B;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;               /* width of the entire scrollbar */
+  width: 8px;             
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #3B3B3B;        /* color of the tracking area */
+  background: #3B3B3B;     
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #F9E4BC;    /* color of the scroll thumb */
-  border-radius: 2px;       /* roundness of the scroll thumb */
+  background-color: #F9E4BC;
+  border-radius: 2px;     
   border: 2px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
 

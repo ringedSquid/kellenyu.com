@@ -7,7 +7,7 @@ import markdown2
 def get_content(dir: str) -> Dict:
     #Markdown extensions
     extras = {
-        "html-classes" : None,
+            "html-classes" : {"pre" : "codehilite"},
         "fenced-code-blocks": None,
         "break-on-newline" : None,
     }
