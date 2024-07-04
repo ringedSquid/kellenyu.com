@@ -30,9 +30,12 @@ def get_content(dir: str) -> Dict:
         content["right"] = markdown2.markdown(file.read(), extras=extras)
         file.close()
 
-    print(content)
-
     return content 
+
+#check if something needs to have the tree displayed
+#if there is a file called "tree" that exists
+def is_tree(dir: str) -> bool:
+    return os.path.exists(f"{dir}/tree")
 
 #Return all directories within a directory 
 def get_dirs(dir: str) -> List:

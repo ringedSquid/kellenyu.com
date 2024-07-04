@@ -18,9 +18,9 @@ def return_page(path):
     page_content = content.get_content(f"content/{path}")
     navbar_links = content.get_dirs(f"content/{path}")
     #Check if it is home page
-    if (path == "home"):
+    if (content.is_tree(path)):
         tree_links = content.get_deep_ls(f"content/{path}")
-        return template("home_page", baselink=f"/{path}", links=navbar_links, content=page_content, tree=tree_links)
+        return template("tree_page", baselink=f"/{path}", links=navbar_links, content=page_content, tree=tree_links)
 
 
     return template("basic_page", baselink=f"/{path}", links=navbar_links, content=page_content)
