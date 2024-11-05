@@ -6,10 +6,11 @@ this is my website.
 <br>
 
 ## Who am I?
-I'm a rising senior at Stuyvesant High School with a passion for embedded systems, robotics, and physics.
+Rising senior at Stuyvesant High School. I like learning about electronics, robotics and physics. 
+For fun I like rock climbing, more specifically bouldering (currently a v3-v4 climber). I don't really do much toproping. 
 <br>
 ## What is on this website?
-On my site you can take a look at things I have worked on. 
+On my site you can take a look at things I have worked on + some of my thoughts.
 <br>
 ## How do I use this website?
 This website is structured like a file system.
