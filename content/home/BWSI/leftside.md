@@ -6,9 +6,8 @@
 <br>
 ### MIT.nano
 
-![image](BWSI/media/fabtour2.png)
 
-![image]()
+![image](https://drive.google.com/file/d/1L1ZIn1z2Agzi0wvvM8ZN56ko-3nRndOP/view?usp=sharing)
 
 ![image]()
 
