@@ -2,7 +2,7 @@
 This is heat (idek). 
 <br>
 ### [link to repo](https://github.com/ringedSquid/Multiprocessing-Heat-Sim-3D)
-<br>
+</br>
 
 ## Quick Overview:
 This program simulates heat transfer by numerically solving the heat equation via the Finite Difference Method. Space and time are discretized into finite intervals in order to approximate solutions to the system. 

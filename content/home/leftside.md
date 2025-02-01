@@ -19,5 +19,8 @@ Some pages have a tree of directories on their right side.
 <br>
 ## Can I get the code for this website?
 Feel free to check out the github repo [here](https://github.com/ringedSquid/kellenyu.com)
-
-
+## Cool Projects!
+### [ElectroStatics Simulator](https://kellenyu.com/home/ElectroStatics-Sim)
+![App Screenshot](https://github.com/Stuycs-K/final-project-5-yu-kellen/raw/main/images/ChargedSphere.png)
+### [Heat Equation Solver](https://kellenyu.com/home/Heat-Sim)
+![1](https://raw.githubusercontent.com/Stuycs-K/project03-final-10-zhua-yuk/refs/heads/main/images/platform.gif)
