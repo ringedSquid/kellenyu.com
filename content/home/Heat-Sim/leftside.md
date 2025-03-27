@@ -14,7 +14,7 @@ $$
 
 We can use this approximation:
 $$
-\frac{d^{2}f}{dt^2} \approx \frac{f(x+h) - 2f(x) + f(x-h)}{h^2}
+\frac{d^{2}f}{dh^2} \approx \frac{f(x+h) - 2f(x) + f(x-h)}{h^2}
 $$
 And solve for the next state of a cell:
 $$
