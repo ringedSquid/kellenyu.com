@@ -1,62 +1,96 @@
 # ElectroStatics-Sim
-A fairly limited electrostatics simulator I made for Mr.K's APCS final project (2024). The simulator runs in processing. 
+An FDM electrostatics simulator I made for Mr.K's APCS final project (2024). Made in Processing.
 <br>
 ### [link to simulator](https://github.com/ringedSquid/Electrostatics-Sim-APCS-final)
 <br>
 ## Quick overview:
-This program simulates electrostatics by approximating solutions to the Poisson equation for electrostatics ($\nabla^2 = \frac{\rho}{\epsilon}$) in a 3D space.
+This program simulates electrostatics by solving the Poisson equation for electrostatics ($\nabla^2 V = -\frac{\rho}{\epsilon}$). 
 Via a desription language, the initial conditions for the simulation can be set. Currently the simulation supports simple 3D geometries, charged materials, and conductive materials.
 
 <br>The operations involved are computationally expensive, and the size of the space is practically limited at 30x30x30 units. (This takes about a minute to be solved)
 
 <br>Due to limitations in the original project guidelines, the 3D space is not rendered. Rather, a single 2D slice of the space can be rendered at a time. 
 <br>
-## The theory behind this simulation
-The entire simulation relies on one very important relationship between the electric field and the potential field:
-$$\nabla V = -E$$ using the fact that $\nabla E = \frac{\rho}{\epsilon}$ we can show:
-
-$$
-\nabla V = -E \\\
-\nabla \cdot (\nabla V) = -\nabla E = -\frac{\rho}{\epsilon} \\\
-\nabla^2 V = -\frac{\rho}{\epsilon}
-$$ which can also be expressed as:
-
-$$
-\frac{\partial^2{V}}{\partial{x^2}} + \frac{\partial^2{V}}{\partial{y^2}} + \frac{\partial^2{V}}{\partial{z^2}} = -\frac{\rho}{\epsilon}
-$$
-
-we now have this partial differential equation. We can approximate a solution using the Finite Difference Method. We must now discretize our equation.
-
+## Theory
+The laplace of the potential field is related to the charge density of a space:
+\begin{align}
+    \vec{\nabla} \cdot V &= -\vec{E} \\\
+    \vec{\nabla} \cdot (\vec{\nabla} \cdot V) &= -\nabla \vec{E} = -\frac{\rho}{\epsilon} \\\
+    \vec{\nabla}^2 V &= -\frac{\rho}{\epsilon}
+\end{align}
+This can also be expressed as:
+\begin{align}
+    \frac{\partial^2{V}}{\partial{x^2}} + \frac{\partial^2{V}}{\partial{y^2}} + \frac{\partial^2{V}}{\partial{z^2}} = -\frac{\rho}{\epsilon}
+\end{align}
+Now given some space, we can approximate solutions to this equation using the finite difference method. This involves first discretizing our space before then solving a system of linear equations.
 <br>
-### What is discretization?
-Discretization in this context means to go from using an infinitesimally small change $dx$ to a discrete small change $\Delta x$. Using the definition of a derivative:
-$$
-\frac{d}{dx}f(x) = \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}
-$$
-when h is small:
-$$
-\frac{f(x+h)-f(x)}{h} \approx \frac{d}{dx}f(x)
-$$
-we can do the same thing for second derivatives:
-$$
-\frac{f(x+h)-2f(x)+f(x-h)}{h^2} \approx \frac{d^2 f}{dx^2}
-$$
-lets now discretize our PDE:
-$$
-\nabla^2 V = \frac{\partial^2{V}}{\partial{x^2}} + \frac{\partial^2{V}}{\partial{y^2}} + \frac{\partial^2{V}}{\partial{z^2}} \\\
-\nabla^2 V \approx \frac{V\_{i+h, j, k}-2V\_{i,j,k}+V\_{i-h, j, k}}{h^2} + \frac{V\_{i, j+h, k}-2V\_{i,j,k}+V\_{i, j-h, k}}{h^2} + \frac{V\_{i, j, k+h}-2V\_{i,j,k}+V\_{i, j, k-h}}{h^2} \\\
-\nabla^2 V \approx \frac{V\_{i+h, j, k}+V\_{i-h, j, k}+V\_{i, j+h, k}+V\_{i, j-h, k}+V\_{i, j, k+h}+V\_{i, j, k-h}-6V\_{i,j,k}}{h^2}
-$$
-### Now how do we solve it?
-Lets say our space is some nxnxn units in dimension. If we know the charge density of every region of our space (which will be broken up in a discrete grid of cubes) we can solve for the potential of each region and then the electric field. $V_\{i, j, k}$ is our unknown, with coefficients of either $\frac{1}{h^2}$ or $-6$.
-<br>Lets look at our equation with the context of a space in mind. Because we are only looking at the region designated by $(i, j, k)$ and it's "neighbors", the coefficients of every other region is zero. Thinking about this like this, we can create a system of linear equations to find the potential field. 
-<br>We can solve this system of linear equations and therefore approximate the solutions to our PDE! (My understanding of the reasoning and processes behind solving a system of linear equations in a 3D space like this is limited and my explanation sucks, look at this [youtube video](https://youtu.be/8MP9rDxfpDI?t=376))
-<br>
-### Wait but what if we don't know the charge density and only potential? How do we find the charge density?
-This is something that needs to be done when trying to find the charge density of the surface of a conductor. The solution is to just rearrange the equation to find the charge distribution.
-<br>idfk I forgot how I did this...
-<br>
-## Using the description language
+### Setting up our FDM (Finite Difference Method) scheme
+#### Discretization
+Recall the definition of the derivative of $f(x)$:
+\begin{align}
+    \frac{df}{dx} = \lim_{h \to 0}\frac{f(x+h) - f(x)}{h}
+\end{align}
+Now for some small h (call it $\Delta h$):
+\begin{align}
+    \frac{df}{dx} \approx \frac{f(x+\Delta h)-f(x)}{\Delta h}
+\end{align}
+We can approximate second derivatives in a similar manner:
+\begin{align}
+     \frac{d^2 f}{dx^2} \approx \frac{f(x+\Delta h)-2f(x)+f(x-\Delta h)}{(\Delta h)^2}
+\end{align}
+We can discretize space, essentially breaking it up into a grid of small regions of space, 
+to approximate a solution for $\vec{\nabla}^2 \cdot V = -\frac{\rho}{\epsilon}$
+\begin{align}
+    \nabla^2 V &= \frac{\partial^2{V}}{\partial{x^2}} + \frac{\partial^2{V}}{\partial{y^2}} + \frac{\partial^2{V}}{\partial{z^2}} \\\
+    \nabla^2 V &\approx 
+    \frac{V\_{i+\Delta h, j, k}-2V\_{i,j,k}+V\_{i-\Delta h, j, k}}{(\Delta h)^2} + 
+    \frac{V\_{i, j+\Delta h, k}-2V\_{i,j,k}+V\_{i, j-\Delta h, k}}{(\Delta h)^2} + 
+    \frac{V\_{i, j, k+\Delta h}-2V\_{i,j,k}+V\_{i, j, k-\Delta h}}{(\Delta h)^2} \\\
+    \nabla^2 V &\approx \frac{V\_{i+\Delta h, j, k}+V\_{i-\Delta h, j, k}+V\_{i, j+\Delta h, k}+V\_{i, j-\Delta h, k}+V\_{i, j, k+\Delta h}+V\_{i, j, k-\Delta h}-6V\_{i,j,k}}{(\Delta h)^2}
+\end{align}
+#### Setting up a system of linear equations
+Lets first index each point in our discretized space of dimensions $\hat{X} \times \hat{Y} \times \hat{Z}$. The index $i$ of the region associated with coordinates $(x, y, z)$ is defined as:
+\begin{align}
+    i = x + \hat{Y}y + (\hat{X}\hat{Y})z
+\end{align}
+Assuming that the charge density of every region within our discretized space is defined, we'll set up a system of linear equations:
+\begin{align}
+    & \vdots \\\
+    -\frac{1}{(\Delta h)^2}V\_{1+\hat{Y}\hat{Z}} + \frac{2}{(\Delta h)^2}V\_{1+\hat{Y}+\hat{Y}\hat{Z}} - \frac{1}{(\Delta h)^2}V\_{1+2\hat{Y}+\hat{Y}\hat{Z}} + \dots &= \frac{\rho\_{1+\hat{Y}+\hat{Y}\hat{Z}}}{\epsilon} \\\
+    & \vdots
+\end{align}
+We can represent this system as a matrix equation in the form $\mathrm{M}\vec{x} = \vec{b}$:
+\begin{align}
+    \underbrace{
+    \begin{bmatrix}
+    -\frac{1}{(\Delta h)^2} & \frac{2}{(\Delta h)^2} & -\frac{1}{(\Delta h)^2} & 0 & \dots \\\
+    0 & -\frac{1}{(\Delta h)^2} & \frac{2}{(\Delta h)^2} & -\frac{1}{(\Delta h)^2} & \dots \\\
+    0 & 0 & -\frac{1}{(\Delta h)^2} & \frac{2}{(\Delta h)^2} & \dots \\\
+    0 & 0 & 0 & -\frac{1}{(\Delta h)^2} & \dots \\\
+    0 & 0 & 0 & \ddots & \dots \\\
+    \end{bmatrix}
+    }\_{\mathrm{M}}
+    \underbrace{
+    \begin{bmatrix}
+    V\_{0, 0, 0} \\\
+    V\_{1, 0, 0} \\\
+    V\_{2, 0, 0} \\\
+    \vdots \\\
+    V\_{\hat{X}, \hat{Y}, \hat{Z}}
+    \end{bmatrix}
+    }\_{\vec{x}}
+    &=
+    \underbrace{
+    \begin{bmatrix}
+    \frac{\rho\_{0, 0, 0}}{\epsilon} \\\
+    \frac{\rho\_{1, 0, 0}}{\epsilon} \\\
+    \frac{\rho\_{2, 0, 0}}{\epsilon} \\\
+    \vdots \\\
+    \frac{\rho{\_{\hat{X}, \hat{Y}, \hat{Z}}}}{\epsilon}
+    \end{bmatrix}
+    }\_{\vec{b}} \\\
+    \mathrm{M}\vec{x} &= \vec{b}
+\end{align}
 This program interprets a custom description language that describes a scenario for the simulation to run. The syntax is very simple. 
 <br>
 #### Every program must start with this line:

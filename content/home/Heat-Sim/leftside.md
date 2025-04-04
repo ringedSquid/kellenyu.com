@@ -1,5 +1,4 @@
 # Multiprocessing 3D Heat Equation Solver
-This is heat (idek). 
 <br>
 ### [link to repo](https://github.com/ringedSquid/Multiprocessing-Heat-Sim-3D)
 </br>
