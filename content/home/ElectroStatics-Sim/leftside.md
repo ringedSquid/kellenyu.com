@@ -1,7 +1,7 @@
 # ElectroStatics-Sim
 An FDM electrostatics simulator I made for Mr.K's APCS final project (2024). Made in Processing.
 <br>
-### [link to simulator](https://github.com/ringedSquid/Electrostatics-Sim-APCS-final)
+### [Github Repo](https://github.com/ringedSquid/Electrostatics-Sim-APCS-final)
 <br>
 ## Quick overview:
 This program simulates electrostatics by solving the Poisson equation for electrostatics ($\nabla^2 V = -\frac{\rho}{\epsilon}$). 
@@ -12,11 +12,11 @@ Via a desription language, the initial conditions for the simulation can be set.
 <br>Due to limitations in the original project guidelines, the 3D space is not rendered. Rather, a single 2D slice of the space can be rendered at a time. 
 <br>
 ## Theory
-The laplace of the potential field is related to the charge density of a space:
+The laplacian of potential is equal to the negative charge density divided by the permittivity of space:
 \begin{align}
-    \vec{\nabla} \cdot V &= -\vec{E} \\\
-    \vec{\nabla} \cdot (\vec{\nabla} \cdot V) &= -\nabla \vec{E} = -\frac{\rho}{\epsilon} \\\
-    \vec{\nabla}^2 V &= -\frac{\rho}{\epsilon}
+\nabla \cdot V &= -\vec{E} \\\
+\nabla \cdot (\nabla \cdot V) &= -\nabla \cdot \vec{E} = -\frac{\rho}{\epsilon} \\\
+\nabla^2 V &= -\frac{\rho}{\epsilon}
 \end{align}
 This can also be expressed as:
 \begin{align}
@@ -39,7 +39,7 @@ We can approximate second derivatives in a similar manner:
      \frac{d^2 f}{dx^2} \approx \frac{f(x+\Delta h)-2f(x)+f(x-\Delta h)}{(\Delta h)^2}
 \end{align}
 We can discretize space, essentially breaking it up into a grid of small regions of space, 
-to approximate a solution for $\vec{\nabla}^2 \cdot V = -\frac{\rho}{\epsilon}$
+to approximate a solution for $\nabla^2 V = -\frac{\rho}{\epsilon}$
 \begin{align}
     \nabla^2 V &= \frac{\partial^2{V}}{\partial{x^2}} + \frac{\partial^2{V}}{\partial{y^2}} + \frac{\partial^2{V}}{\partial{z^2}} \\\
     \nabla^2 V &\approx 
@@ -48,26 +48,33 @@ to approximate a solution for $\vec{\nabla}^2 \cdot V = -\frac{\rho}{\epsilon}$
     \frac{V\_{i, j, k+\Delta h}-2V\_{i,j,k}+V\_{i, j, k-\Delta h}}{(\Delta h)^2} \\\
     \nabla^2 V &\approx \frac{V\_{i+\Delta h, j, k}+V\_{i-\Delta h, j, k}+V\_{i, j+\Delta h, k}+V\_{i, j-\Delta h, k}+V\_{i, j, k+\Delta h}+V\_{i, j, k-\Delta h}-6V\_{i,j,k}}{(\Delta h)^2}
 \end{align}
+#### Boundary conditions
+In this simulation, the potential at the boundaries of our space are set to zero. $V_{x, y, z} = 0$ for $(x, y, z) \in \partial\Omega$
+<br>
 #### Setting up a system of linear equations
-Lets first index each point in our discretized space of dimensions $\hat{X} \times \hat{Y} \times \hat{Z}$. The index $i$ of the region associated with coordinates $(x, y, z)$ is defined as:
+Assuming that the charge density of every region within our discretized space is defined, we'll set up a system of linear equations:
+\begin{align}
+    \frac{1}{(\Delta h)^2}V\_{1, 0, 0} + \frac{1}{(\Delta h)^2}V\_{0, 1, 0} + \frac{1}{(\Delta h)^2}V\_{0, 0, 1} + -\frac{6}{(\Delta h)^2}V\_{0, 0, 0} &= -\frac{\rho\_{0, 0, 0}}{\epsilon}\\\
+    \frac{1}{(\Delta h)^2}V\_{2, 0, 0} +  \frac{1}{(\Delta h)^2}V\_{0, 0, 0} + \frac{1}{(\Delta h)^2}V\_{0, 1, 0} + \frac{1}{(\Delta h)^2}V\_{0, 0, 1} + -\frac{6}{(\Delta h)^2}V\_{1, 0, 0} &= -\frac{\rho\_{1, 0, 0}}{\epsilon}\\\
+    &\vdots \\\
+    \frac{1}{(\Delta h)^2}V\_{\hat{X}-1, \hat{Y}, \hat{Z}} + \frac{1}{(\Delta h)^2}V\_{\hat{X}, \hat{Y}-1, \hat{Z}} + \frac{1}{(\Delta h)^2}V\_{\hat{X}, \hat{Y}, \hat{Z}-1} + -\frac{6}{(\Delta h)^2}V\_{\hat{X}, \hat{Y}, \hat{Z}} &= -\frac{\rho\_{\hat{X}, \hat{Y}, \hat{Z}}}{\epsilon}
+\end{align}
+
+Before we represent our system of equations as a matrix equation, we have to first index each point in our discretized space of dimensions $\hat{X} \times \hat{Y} \times \hat{Z}$. The index $i$ of the region associated with coordinates $(x, y, z)$ is defined as:
 \begin{align}
     i = x + \hat{Y}y + (\hat{X}\hat{Y})z
 \end{align}
-Assuming that the charge density of every region within our discretized space is defined, we'll set up a system of linear equations:
-\begin{align}
-    & \vdots \\\
-    -\frac{1}{(\Delta h)^2}V\_{1+\hat{Y}\hat{Z}} + \frac{2}{(\Delta h)^2}V\_{1+\hat{Y}+\hat{Y}\hat{Z}} - \frac{1}{(\Delta h)^2}V\_{1+2\hat{Y}+\hat{Y}\hat{Z}} + \dots &= \frac{\rho\_{1+\hat{Y}+\hat{Y}\hat{Z}}}{\epsilon} \\\
-    & \vdots
-\end{align}
-We can represent this system as a matrix equation in the form $\mathrm{M}\vec{x} = \vec{b}$:
+
+Our system as a matrix equation in the form $\mathrm{M}\vec{x} = \vec{b}$:
 \begin{align}
     \underbrace{
     \begin{bmatrix}
-    -\frac{1}{(\Delta h)^2} & \frac{2}{(\Delta h)^2} & -\frac{1}{(\Delta h)^2} & 0 & \dots \\\
-    0 & -\frac{1}{(\Delta h)^2} & \frac{2}{(\Delta h)^2} & -\frac{1}{(\Delta h)^2} & \dots \\\
-    0 & 0 & -\frac{1}{(\Delta h)^2} & \frac{2}{(\Delta h)^2} & \dots \\\
-    0 & 0 & 0 & -\frac{1}{(\Delta h)^2} & \dots \\\
-    0 & 0 & 0 & \ddots & \dots \\\
+    -\frac{6}{(\Delta h)^2} & \frac{1}{(\Delta h)^2} & 0 & \dots \\\
+    \frac{1}{(\Delta h)^2} & -\frac{6}{(\Delta h)^2} & \frac{1}{(\Delta h)^2} & \dots \\\
+    0 & \frac{1}{(\Delta h)^2} & -\frac{6}{(\Delta h)^2} & \dots \\\
+    0 & 0 & \frac{1}{(\Delta h)^2} & \ddots \\\
+    \vdots & \vdots & \vdots & \vdots \\\
+    0 & 0 & 0 & \dots \\\
     \end{bmatrix}
     }\_{\mathrm{M}}
     \underbrace{
@@ -82,15 +89,28 @@ We can represent this system as a matrix equation in the form $\mathrm{M}\vec{x}
     &=
     \underbrace{
     \begin{bmatrix}
-    \frac{\rho\_{0, 0, 0}}{\epsilon} \\\
-    \frac{\rho\_{1, 0, 0}}{\epsilon} \\\
-    \frac{\rho\_{2, 0, 0}}{\epsilon} \\\
+    -\frac{\rho\_{0, 0, 0}}{\epsilon} \\\
+    -\frac{\rho\_{1, 0, 0}}{\epsilon} \\\
+    -\frac{\rho\_{2, 0, 0}}{\epsilon} \\\
     \vdots \\\
-    \frac{\rho{\_{\hat{X}, \hat{Y}, \hat{Z}}}}{\epsilon}
+    -\frac{\rho{\_{\hat{X}, \hat{Y}, \hat{Z}}}}{\epsilon}
     \end{bmatrix}
     }\_{\vec{b}} \\\
     \mathrm{M}\vec{x} &= \vec{b}
 \end{align}
+If the potential at some region is known but the charge density is not, a simple re-arrangement of terms lets us solve for it.
+\begin{align}
+    \frac{V\_{i+\Delta h, j, k}+V\_{i-\Delta h, j, k}+V\_{i, j+\Delta h, k}+V\_{i, j-\Delta h, k}+V\_{i, j, k+\Delta h}+V\_{i, j, k-\Delta h}-6V\_{i,j,k}}{(\Delta h)^2} &= -\frac{\rho\_{i, j, k}}{\epsilon} \\\
+    V\_{i+\Delta h, j, k}+V\_{i-\Delta h, j, k}+V\_{i, j+\Delta h, k}+V\_{i, j-\Delta h, k}+V\_{i, j, k+\Delta h}+V\_{i, j, k-\Delta h}-6V\_{i,j,k} &= -\frac{\rho\_{i, j, k}(\Delta h)^2}{\epsilon} \\\
+    V\_{i+\Delta h, j, k}+V\_{i-\Delta h, j, k}+V\_{i, j+\Delta h, k}+V\_{i, j-\Delta h, k}+V\_{i, j, k+\Delta h}+V\_{i, j, k-\Delta h}+\frac{\rho\_{i, j, k}(\Delta h)^2}{\epsilon} &= 6V\_{i,j,k}\\\
+    \frac{V\_{i+\Delta h, j, k}+V\_{i-\Delta h, j, k}+V\_{i, j+\Delta h, k}+V\_{i, j-\Delta h, k}+V\_{i, j, k+\Delta h}+V\_{i, j, k-\Delta h}}{6} +  \frac{\rho\_{i, j, k}(\Delta h)^2}{6\epsilon} &= V\_{i,j,k}
+\end{align}
+Once the charge density at that region is solved for, the values can be swapped from their respective places in vectors $\vec{x}$ and $\vec{b}$.
+<br>
+### Implementation Notes
+The implementation of this FDM scheme is fairly straightforward. But I want to note that I used sparse matricies to reduce the memory complexity of this program. This simulation is computationaly expensive, with the rendered examples taking around a minute to be solved.
+<br>
+## Simulation Description Language
 This program interprets a custom description language that describes a scenario for the simulation to run. The syntax is very simple. 
 <br>
 #### Every program must start with this line:

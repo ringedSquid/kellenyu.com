@@ -1,6 +1,6 @@
 # Multiprocessing 3D Heat Equation Solver
 <br>
-### [link to repo](https://github.com/ringedSquid/Multiprocessing-Heat-Sim-3D)
+### [Github Repo](https://github.com/ringedSquid/Multiprocessing-Heat-Sim-3D)
 </br>
 
 ## Quick Overview:
@@ -32,7 +32,7 @@ For a 3D grid of cells, many of these calculations will be needed. What this pro
 ### To run:
 ```$ ./solver input.csv output.csv```
 <br>
-## Bugs
+## A note
 This is not really a bug, but make sure that your dt/(units^2) is less than 0.5. If this value is above 0.5, the system will not be numerically stable. [read more about it here](https://en.wikipedia.org/wiki/Finite_difference_method)
 <br>
 ## Using the description language:

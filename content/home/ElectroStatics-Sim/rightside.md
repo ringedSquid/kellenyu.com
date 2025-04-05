@@ -1,9 +1,9 @@
 ## Some screenshots from the simulation:
-### Electric Field inside a charged hollow sphere
-![App Screenshot](https://github.com/Stuycs-K/final-project-5-yu-kellen/raw/main/images/ChargedSphere.png)
+### Electric Field inside a charged shell
+<img src="https://github.com/Stuycs-K/final-project-5-yu-kellen/raw/main/images/ChargedSphere.png" alt="drawing" width="100%"/>
 ### Electric Field of a dipole (positive and negative charged balls)
-![App Screenshot](https://github.com/Stuycs-K/final-project-5-yu-kellen/raw/main/images/Dipole.png)
+<img src="https://github.com/Stuycs-K/final-project-5-yu-kellen/raw/main/images/Dipole.png" alt="drawing" width="100%"/>
 ### Induced charge on the surface of a hollow conducting box
-![App Screenshot](https://github.com/Stuycs-K/final-project-5-yu-kellen/raw/main/images/InducedCharge.png)
+<img src="https://github.com/Stuycs-K/final-project-5-yu-kellen/raw/main/images/InducedCharge.png" alt="drawing" width="100%"/>
 ### Shielding effect of conductors
-![App Screenshot](https://github.com/Stuycs-K/final-project-5-yu-kellen/raw/main/images/Shielding.png)
+<img src="https://github.com/Stuycs-K/final-project-5-yu-kellen/raw/main/images/Shielding.png" alt="drawing" width="100%"/>
