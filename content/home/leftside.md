@@ -7,7 +7,7 @@ this is my website.
 <br>
 
 ## Who am I?
-I'm Kellen Yu, and I go to Stuyvesant High School. I like learning about electronics, robotics, and physics.
+I'm Kellen Yu, and I'm a current freshman at Cornell University College of Engineering. I like learning about electronics, robotics, and physics.
 <br>
 ## What is on this website?
 On my site you can take a look at some of my projects.

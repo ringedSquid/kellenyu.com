@@ -15,7 +15,7 @@ def return_page(path):
 
     if (dirs[len(dirs)-2] == "media"):
         print(path)
-        return static_file(path, root="", mimetype='image/jpg')
+        return static_file(path, root="content/", mimetype='image/jpg')
 
 
     page_content = content.get_content(f"content/{path}")
@@ -32,4 +32,4 @@ if __name__ == "__main__":
     if os.environ.get('APP_LOCATION') == 'heroku':
         run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
     else:
-        run(host='localhost', port=8080, debug=True)
+        run(host='localhost', port=6767, debug=True)
