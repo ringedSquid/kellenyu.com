@@ -19,6 +19,9 @@ I'm a current freshman at Cornell University and plan to major in EECS. I'm inte
 ### [Electric Vehicle](/home/Science-Olympiad/Electric-Vehicle)
 <a href="home/Science-Olympiad/Electric-Vehicle"><img src="home/Science-Olympiad/Electric-Vehicle/media/Markova_CAD.png" alt="Markova" width="50%"></a>
 
+### [Hands Free Mouse](/home/Hands-Free-Mouse)
+<a href="/home/Hands-Free-Mouse"><img src="https://github.com/ringedSquid/Hands_Free_Mouse_SSCS-2025/blob/main/media/maxresdefault.jpg?raw=true" alt="Thumb" width="50%"></a>
+
 ### [8-bit Breadboard Computer](/home/jimbo-0-minicomputer)
 <a href="/home/jimbo-0-minicomputer"><img src="https://github.com/StuyCEC/jimbo-0/raw/main/images/fullimage.jpg?raw=true" alt="jimbo" width="50%"></a>
 
