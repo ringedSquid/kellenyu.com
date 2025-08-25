@@ -1,6 +1,9 @@
 # Kellen Yu
+I build things.
+<br>
 
-I'm a current freshman at Cornell University and plan to major in EECS. I'm interested in analog electronics, VLSI, embedded design & programming, and robotics. I really like bouldering!
+## About me
+I'm a current freshman at Cornell University and plan to major in EECS. I'm interested in analog electronics, VLSI, embedded design & programming, and robotics. In my free time I enjoy rock climbing. 
 <br>
 
 ### [linkedin](https://www.linkedin.com/in/kellen-yu-ab2728318) | [email](malito:kcy24@cornell.edu)

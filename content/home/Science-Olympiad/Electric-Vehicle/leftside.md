@@ -15,6 +15,7 @@ Experimental build, first custom PCB & machined chassis.
 
 * ESP32 MCU, H-bridge motor driver, BMI270 IMU, AMT102 Encoder, LDO.
 * Wi-fi Telemetry Interface.
+* S-Curve motion profiling that utilizes a precomputed table to reduce looptime. 
 <br>
 
 ## Markova
