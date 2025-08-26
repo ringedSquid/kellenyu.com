@@ -3,7 +3,7 @@ I build things.
 <br>
 
 ## About me
-I'm a current freshman at Cornell University and plan to major in EECS. I'm interested in analog electronics, VLSI, embedded design & programming, and robotics. In my free time I enjoy rock climbing. 
+I'm a current freshman at Cornell University and plan to major in EECS. I'm interested in analog electronics, sustainable technology, VLSI, embedded design & programming, and robotics. In my free time I enjoy rock climbing. 
 <br>
 
 ### [linkedin](https://www.linkedin.com/in/kellen-yu-ab2728318) | [email](malito:kcy24@cornell.edu)
@@ -19,6 +19,9 @@ I'm a current freshman at Cornell University and plan to major in EECS. I'm inte
 
 
 ## Highlighted Projects:
+### [Cost-Effective-Soil-Moisture-Sensor](/home/Cost-Effective-Soil-Moisture-Sensor)
+<a href="/home/Cost-Effective-Soil-Moisture-Sensor"><img src="https://i3.ytimg.com/vi/Hh_UeHd2Llg/maxresdefault.jpg" alt="CESML" width="50%"></a>
+
 ### [Electric Vehicle](/home/Science-Olympiad/Electric-Vehicle)
 <a href="home/Science-Olympiad/Electric-Vehicle"><img src="home/Science-Olympiad/Electric-Vehicle/media/Markova_CAD.png" alt="Markova" width="50%"></a>
 
