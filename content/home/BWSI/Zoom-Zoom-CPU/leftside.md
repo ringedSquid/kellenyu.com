@@ -1,5 +1,5 @@
 # Zoom-Zoom-CPU
-A simple 16-bit CPU with an integrated Keccakf1600 accelerator. My capstone project that I and a group of 4 other students worked on for the MIT Beaver Works Summer Institute program. Featured in Tiny Tapout 8. My main contribution to this project was putting together the assembler and verification.
+A simple 16-bit CPU with an integrated SHA3 and CORDIC accelerator. My capstone project that I and a group of 4 other students worked on for the MIT Beaver Works Summer Institute program. Featured in Tiny Tapout 8. My main contribution to this project was putting together the assembler and verification.
 <br>
 
 ### [github repo](https://github.com/ringedSquid/BWSI-ASICS-24-Zoom-Zoom/tree/main) [TT08](https://tinytapeout.com/chips/tt08/tt_um_zoom_zoom)
