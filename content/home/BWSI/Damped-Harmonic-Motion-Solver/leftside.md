@@ -2,7 +2,6 @@
 A simple analog computer constructed from Op-Amps that models damped harmonic motion through solving a 2nd order differential equation.
 <br>
 
-### [link to repo](https://github.com/ringedSquid/BWSI-ASICS-24-BoingBoing)
 <br>
 ## Quick overview of the physics:
 We first start with Hooke's Law, which describes the relationship between the force a spring exerts and its displacement from the equilibrium position:
@@ -31,7 +30,7 @@ With this analog we can plug in initial paramters $x$, $v$, and $a$, let the sys
 We can set up a few integrators and summing amplifiers in a way that "mimics" our DE and put a scope probe at certain points of the circuit to get the information we want. <br>
 
 ## The process
-My group and I first came up with a high level flowchart of the circuit before then simulating it in ltSPICE. It worked as expected so we then went to breadboarding. I used an LM358N as my Op-Amp coupled with a 12v dual rail supply. (I had to create a virtual ground, because I only have a single rail supply). <br>
+I first came up with a high level flowchart of the circuit before then simulating it in ltSPICE. It worked as expected so we then went to breadboarding. I used an LM358N as my Op-Amp coupled with a 12v dual rail supply. (I had to create a virtual ground, because I only have a single rail supply). <br>
 Potentiometers were put on the inputs to the summing amplifiers to adjust the coefficients, and a simple voltage divider with a pushbutton acted as a way to initialize the system. <br>
 What was cool was that by plugging the output of the last integrator right back into an input, we were "equating" the terms of the DE. It feels kind of weird to think about, how its all instantaneous. <br>
 One really important thing to do is slap a buffer on the virtual ground connection as without it, things don't work quite well. 
